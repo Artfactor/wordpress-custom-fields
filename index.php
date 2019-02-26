@@ -13,6 +13,7 @@ require 'fields/image-with-editor/index.php';
 require 'fields/text/index.php';
 require 'fields/text-with-button/index.php';
 require 'fields/text-with-text/index.php';
+require 'fields/button/index.php';
 
 abstract class CustomFieldCreator{
 
@@ -54,6 +55,14 @@ class TextWithTextCreator extends CustomFieldCreator {
 
   public function factoryMethod($metaBoxName, $title, $postType){
     return new TextWithText($metaBoxName, $title, $postType);
+  }
+
+}
+
+class ButtonCreator extends CustomFieldCreator {
+
+  public function factoryMethod($metaBoxName, $title, $postType){
+    return new Button($metaBoxName, $title, $postType);
   }
 
 }
