@@ -25,7 +25,7 @@ class TextWithButton extends Fields {
           Текст в кнопке: 
         </td>
         <td>
-          <input type="text" value="<?=$text?>" class="regular-text process_custom_images" name="<?=$this->metaBoxName?>[BUTTON_TEXT]">
+          <input type="text" value="<?=$buttonText?>" class="regular-text process_custom_images" name="<?=$this->metaBoxName?>[BUTTON_TEXT]">
         </td>
       </tr>
       <tr>
@@ -33,7 +33,7 @@ class TextWithButton extends Fields {
           Событие onclick на кнопке: 
         </td>
         <td>
-          <input type="text" value="<?=$text?>" class="regular-text process_custom_images" name="<?=$this->metaBoxName?>[EVENT]">
+          <input type="text" value="<?=$event?>" class="regular-text process_custom_images" name="<?=$this->metaBoxName?>[EVENT]">
         </td>
       </tr>
     </table>
