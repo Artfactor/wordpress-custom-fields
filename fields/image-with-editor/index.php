@@ -82,7 +82,7 @@ class ImageWithEditor extends Fields {
       <?if($imageID):?>
         <?=wp_get_attachment_image($imageID)?>
       <?endif;?>
-      <button class="set_custom_images button">Set Image ID</button>
+      <button class="set_custom_images button">Вставить изображение</button>
     </p>
     <?
   }

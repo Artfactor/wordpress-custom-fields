@@ -11,6 +11,8 @@ if($_GET['debug'] === 'Y'){
 require 'fields/index.php';
 require 'fields/image-with-editor/index.php';
 require 'fields/text/index.php';
+require 'fields/text-with-button/index.php';
+require 'fields/text-with-text/index.php';
 
 abstract class CustomFieldCreator{
 
@@ -36,6 +38,22 @@ class TextFieldCreator extends CustomFieldCreator {
 
   public function factoryMethod($metaBoxName, $title, $postType){
     return new Text($metaBoxName, $title, $postType);
+  }
+
+}
+
+class TextWithButtonCreator extends CustomFieldCreator {
+
+  public function factoryMethod($metaBoxName, $title, $postType){
+    return new TextWithButton($metaBoxName, $title, $postType);
+  }
+
+}
+
+class TextWithTextCreator extends CustomFieldCreator {
+
+  public function factoryMethod($metaBoxName, $title, $postType){
+    return new TextWithText($metaBoxName, $title, $postType);
   }
 
 }
