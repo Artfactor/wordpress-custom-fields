@@ -18,7 +18,7 @@ class ImageWithEditor extends Fields {
       var $parent = $('#<?=$name?>');
       if ($parent.find('.set_custom_images').length > 0) {
           if ( typeof wp !== 'undefined' && wp.media && wp.media.editor) {
-              $(document).on('click', '.set_custom_images', function(e) {
+              $parent.on('click', '.set_custom_images', function(e) {
                   e.preventDefault();
                   var button = $(this);
                   var id = button.prev();
@@ -59,19 +59,13 @@ class ImageWithEditor extends Fields {
   }
 
   public function save_post( $post_id ){
-    if (
-      empty( $_POST[$this->metaBoxName] )
-      || wp_is_post_autosave( $post_id )
-      || wp_is_post_revision( $post_id )
-    )
-   return false;
-  $_POST[$this->metaBoxName] = array_filter($_POST[$this->metaBoxName], function($element){ // Удаляю все элементы массива без ID картинки
-    if($element['ID']) return true;
+    if(!$this->check_save_post($post_id))
+      return false;
+    $_POST[$this->metaBoxName] = array_filter($_POST[$this->metaBoxName], function($element){ // Удаляю все элементы массива без ID картинки
+      if($element['ID']) return true;
   });
-
-  update_post_meta( $post_id, $this->metaBoxName,  $_POST[$this->metaBoxName] ); 
-  
-  return $post_id;
+    update_post_meta( $post_id, $this->metaBoxName,  $_POST[$this->metaBoxName] ); 
+    return $post_id;
   }
 
   private function show_image_with_text_input($name, $id, $text = null, $imageID = null){

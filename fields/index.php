@@ -25,16 +25,21 @@ abstract class Fields{
   abstract function show_field($post, $event);
 
   public function save_post($post_id){
-    if (
-      empty( $_POST[$this->metaBoxName] )
-   || wp_is_post_autosave( $post_id )
-   || wp_is_post_revision( $post_id )
-  )
-   return false;
-  
+    if(!$this->check_save_post($post_id))
+      return false;
   // Все ОК! Теперь, нужно сохранить/удалить данные
   update_post_meta( $post_id, $this->metaBoxName,  $_POST[$this->metaBoxName] ); // add_post_meta() работает автоматически
     return $post_id;
+  }
+
+  protected function check_save_post($post_id){
+    if (
+      empty( $_POST[$this->metaBoxName] )
+      || wp_is_post_autosave( $post_id )
+      || wp_is_post_revision( $post_id )
+    )
+    return false;
+   return true;
   }
 
   public function registerActions(){
